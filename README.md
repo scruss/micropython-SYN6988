@@ -111,8 +111,39 @@ There are very few methods and properties to this module:
 
 * **isBusy**() - if called in non-blocking mode, `isBusy()` returns
   true while the TTS is speaking. This can be used to prevent
-  interrupting speech.
+  interrupting speech. If called in blocking mode, will always return
+  false.
+
+## Embedded text commands
+
+The SYN6988 is controlled by commands surrounded by `[]`. There are
+many of these, and I don't understand them all. I've put a few of them
+in `test-syn6988.py` with I hope clear meanings of what they do. In
+brief:
+
+* `[d]` - reset the TTS to standard mode. Can be useful after calling
+  any of the alert sounds.
   
+* `[g0]` - automatic language guessing; `[g1]` - Chinese language
+  preference; `[g2]` - English language preference. English spoken in
+  Chinese mode has strange intonation, while Chinese spoken in English
+  mode may not be correctly detected.
+  
+* `[p*]` - pause, for example `[p500]` pauses for 500 ms.
+
+* `[s*]` - speech rate: `[s0]` slowest to `[s10]` fastest.
+
+* `[t*]` - tone/pitch: `[t0]` lowest to `[t10]` highest.
+
+* `[x0]` / `[x1]` - interpret a string starting with "sound" as one
+  of several hundred (?) different tones, chimes and alarms. For
+  example `[x1]soundy[d]` plays a rather pleasing chime which I
+  overuse greatly. It's important to use `[d]` after this command or
+  unexpected results will occur.
+  
+* `[v*]` - volume: `[v0]` silent, `[v1]` quietest to `[v10]` loudest.
+
+
 ## Internals
 
 The SYN6988 accepts a wide range of input encodings, none of which are
@@ -131,7 +162,7 @@ and attempt to speak it:
 
     0xFD, tx_len // 256, tx_len % 256, 0x01, 0x04, data_bytes
 
-The data string shouldn't be too long: something under 2047
+The data string shouldn't be too long: something under 4096
 characters, perhaps.
 
 ## References
