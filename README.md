@@ -23,7 +23,7 @@ vendors. It's impressive because:
 * it has some flexibility in volume, pitch and rate of speech (but
   it's no [DECtalk](https://github.com/dectalk/dectalk));
   
-* it has a large library of alert tones built-n;
+* it has a large library of alert tones built-in;
   
 * it is not expensive, being around 🇨🇦 $15.
 
@@ -46,7 +46,7 @@ monitor the busy status of the TTS.
         SYN6988        MicroPython Board     Raspberry Pi Pico
 	   =========      ===================   ===================
 	   
-	    RDY            Digital Input         GPIO 2
+	        RDY            Digital Input         GPIO 2
 		RXD            UART TXD              GPIO 0 (UART 0 TX)
 		TXD            UART RXD              GPIO 1 (UART 0 RX)
 		GND            Ground                Any GND pin
