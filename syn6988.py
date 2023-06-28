@@ -49,7 +49,7 @@ class SYN6988:
         ## assumes UTF-16BE encoding
         buf = bytes([0xFD, tx_len // 256, tx_len % 256, 0x01, 0x04])
         self.uart.write(buf + data_bytes)
-        time.sleep(0.1)  # not quite asserted as busy immediately
+        time.sleep(0.7)  # not quite asserted as busy immediately
         if self.block:
             while self.isBusy():
                 pass

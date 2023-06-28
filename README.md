@@ -163,7 +163,8 @@ and attempt to speak it:
     0xFD, tx_len // 256, tx_len % 256, 0x01, 0x04, data_bytes
 
 The data string shouldn't be too long: something under 4096
-characters, perhaps.
+characters, perhaps. The board can take up to 700 ms to process text,
+and hence we pause for that long to make sure text is all spoken.
 
 ## References
 
