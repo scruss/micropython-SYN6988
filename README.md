@@ -3,9 +3,11 @@ MicroPython library for the YuTone VoiceTX SYN6988 text to speech module.
 
 ## Demo
 
-SYN6988 MicroPython Demo: <a href="images/syn6988-micropython-demo.mp3">play me</a>
+https://github.com/scruss/micropython-SYN6988/assets/425706/bf107dc3-3db7-4eb7-90a4-6cfe5986529f
 
-which comes from the following text:
+or demo audio download: <a href="images/syn6988-micropython-demo.mp3">syn6988-micropython-demo.mp3</a>
+
+which "reads" the following text:
 ```
 [g2]Hello! [g1]你好![g2]
 I can speak in English, and also in Chinese:
@@ -51,6 +53,10 @@ Of course, there are downsides:
   
 * you may not get the board you ordered! I was sold this board as
   having an XFS5152 chip when it clearly has a SYN6988.
+
+### Where to buy
+
+It's hard to recommend a vendor, as I can't guarantee they are selling a board with a SYN6988 on it. Check that the vendor description says SYN6988 (there are similar chips SYN6288 and SYN6658 with different capabilities) and the board has a chip with a clear **SYN6988** silkscreen. I've seen a few boards for sale that say SYN6658 on the PCB silkscreen, but have a SYN6988 in the image and description.
   
 ## Interfacing
 
@@ -98,7 +104,7 @@ alt="SYNC6988 with Raspberry Pi Pico and small speaker" />
 
 If the board is connected correctly, the red Ready LED will be lit
 when the TTS is not speaking. This LED will go out when the TTS is
-speaking, and the RDY pin will go low shortly (about 0.1 s) after the
+speaking, and the RDY pin will go low shortly (about 0.1 to 0.7 s) after the
 speech starts, and go high when speech is finished.
 
 If the initialization code above is used, the following MicroPython
@@ -180,6 +186,22 @@ and attempt to speak it:
 The data string shouldn't be too long: something under 4096
 characters, perhaps. The board can take up to 700 ms to process text,
 and hence we pause for that long to make sure text is all spoken.
+
+## Author
+
+Stewart Russell - [scruss.com](https://scruss.com/blog/) - aka [@scruss@xoxo.zone](https://xoxo.zone/@scruss)
+
+## Licence
+
+MIT. If you improve on this, though, please let me know so I can make this better.
+
+## To do
+
+* The UTF-8 -> UTF-16BE code works but feels like it could be improved. It has to stay something I can understand, though.
+
+* There's a small chance that really long text will be skipped because I'm not waiting long enough for it to be processed when reading in blocking mode.
+
+* Generalize this code (if possible) to work with SYN6288, SYN6658 and XFS5152 chipsets. I have several of these on order.
 
 ## References
 
