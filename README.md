@@ -3,16 +3,8 @@ MicroPython library for the YuTone VoiceTX SYN6988 text to speech module.
 
 ## Demo
 
-<figure>
-    <figcaption>SYN6988 MicroPython Demo:</figcaption>
-    <audio
-        controls
-        src="images/syn6988-micropython-demo.mp3">
-            <a href="images/syn6988-micropython-demo.mp3">
-                Download audio
-            </a>
-    </audio>
-</figure>
+SYN6988 MicroPython Demo: <a href="images/syn6988-micropython-demo.mp3">play me</a>
+
 which comes from the following text:
 ```
 [g2]Hello! [g1]你好![g2]
