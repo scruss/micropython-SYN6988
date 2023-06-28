@@ -13,6 +13,8 @@ busyPin = machine.Pin(2, machine.Pin.IN, machine.Pin.PULL_UP)
 s = syn6988.SYN6988(ser, busyPin)
 
 s.speak("[v1]hello")
+
+# "a journey of five hundred kilometres starts with the first step"
 #s.speak("[v1][g1]千里之行，始于足下。[d]")
 # s.speak("[t1]ha [t3]ha [t5]ha [t7]ha [t9]ha ")
 # s.speak("[s0]faster and [s1]faster and [s2]faster and [s3]faster and [s4]faster and [s5]faster and [s6]faster and [s7]faster and [s8]faster and [s9]faster and [s10]faster")
