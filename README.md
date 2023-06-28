@@ -96,3 +96,58 @@ s = syn6988.SYN6988(ser, busyPin)
 s.speak("[v1]hello")
 ```
 
+There are very few methods and properties to this module:
+
+* **speak**(*string*) - sends *string* to the TTS. Output can be
+  shaped with embedded text commands. Accepts Unicode text including
+  Traditional Chinese characters. Makes an extremely poor job of
+  attempting non-English or non-Chinese language.
+  
+* **block** = *True* | *False* - by default, speech is emitted in
+  *blocking mode*: that is, the `speak()` method will not return until
+  the TTS has indicated it is finished. If `block = False` is set,
+  `speak()` will return immediately, but the TTS will still be speaking
+  and waiting is left up to the programmer.
+
+* **isBusy**() - if called in non-blocking mode, `isBusy()` returns
+  true while the TTS is speaking. This can be used to prevent
+  interrupting speech.
+  
+## Internals
+
+The SYN6988 accepts a wide range of input encodings, none of which are
+supported by MicroPython. It does, however, support UTF16-BE (two
+bytes per char, no BOM, high byte first; eg: "hello" =>
+`b'\x00h\x00e\x00l\x00l\x00o'`) which can be fairly easily fudged to
+work. If our UTF-16BE encoded data is in `data_bytes` and we define
+
+```python3
+tx_len = len(data_bytes) + 2
+```
+
+the SYN6988 will accept the following byte stream over the serial port
+and attempt to speak it:
+
+
+    0xFD, tx_len // 256, tx_len % 256, 0x01, 0x04, data_bytes
+
+The data string shouldn't be too long: something under 2047
+characters, perhaps.
+
+## References
+
+* YuTone VoiceTX SYN6988 documentation (in Chinese only): [语音合成芯
+  片-SYN6988中英文TTS语音芯
+  片](http://www.voicetx.com/product/detail.html?id=11).
+
+* My early attempts to drive this board from CPython: [Speech from
+  Python with the SYN6988 module – We Saw a Chicken
+  …](https://scruss.com/blog/2023/06/21/speech-from-python-with-the-syn6988-module/). This
+  produces sound, but I'm actually driving it wrongly. Still works,
+  though. Has an auto-translated copy of the programming reference,
+  which is all I have had to work from.
+
+* Richard Brautigan's poem *All Watched Over by Machines of Loving
+  Grace*, "read" by a SYN6988 TTS chip driven by MicroPython: [All
+  Watched Over By Machines of Loving Grace |
+  SoundCloud](https://soundcloud.com/user8899915/all-watched-over-by-machines-of-loving-grace).
