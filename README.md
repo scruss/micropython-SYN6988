@@ -1,6 +1,29 @@
 # micropython-SYN6988
 MicroPython library for the YuTone VoiceTX SYN6988 text to speech module.
 
+## Demo
+
+<figure>
+    <figcaption>SYN6988 MicroPython Demo:</figcaption>
+    <audio
+        controls
+        src="images/syn6988-micropython-demo.mp3">
+            <a href="images/syn6988-micropython-demo.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
+which comes from the following text:
+```
+[g2]Hello! [g1]你好![g2]
+I can speak in English, and also in Chinese:
+[g1]千里之行，始于足下。[g2]
+which means: a journey of five hundred kilometres starts with the first step
+[s1]I can speak slowly, [s9] and I can speak very fast[s5]
+[v5]I can be [v10]loud or [v1]very quiet. [v5]
+I can use [t1]low tones [t5]or [t8]high tones[t5]
+[d][g0]my work here is done [x1]soundy[d]
+```
 
 ## Introduction 
 
