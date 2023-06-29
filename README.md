@@ -160,7 +160,7 @@ brief:
   of several hundred (?) different tones, chimes and alarms. For
   example `[x1]soundy[d]` plays a rather pleasing chime which I
   overuse greatly. It's important to use `[d]` after this command or
-  unexpected results will occur.
+  unexpected results will occur. A sound table reference is here: [SYN-6988 Speech with MicroPython – We Saw a Chicken …](https://scruss.com/blog/2023/06/28/syn-6988-speech-with-micropython/)
   
 * `[v*]` - volume: `[v0]` silent, `[v1]` quietest to `[v10]` loudest.
 
